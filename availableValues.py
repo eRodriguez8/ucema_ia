@@ -1,6 +1,6 @@
 import random
 
-#se generan val
+#se generan v
 class AvailableValues:
     @staticmethod
     def get(solution, sudoku):

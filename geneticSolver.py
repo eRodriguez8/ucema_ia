@@ -2,7 +2,7 @@ from fitnessEvaluator import FitnessEvaluator
 from populationGenerator import PopulationGenerator
 
 class GeneticSolver:
-    def __init__(self, population_size=100, mutation_rate=0.2, crossover_rate=0.8, max_generations=15000):
+    def __init__(self, population_size=100, mutation_rate=0.3, crossover_rate=0.8, max_generations=1000):
         self.population_size = population_size
         self.mutation_rate = mutation_rate
         self.crossover_rate = crossover_rate
@@ -16,7 +16,7 @@ class GeneticSolver:
         # Se copia el sudoku original
         current_solution = [[sudoku[row][col] for col in range(9)] for row in range(9)]
 
-        # Genera una población inicial de soluciones. TOMA
+        # Genera una población inicial de soluciones.
         population = population_generator.random(current_solution)
 
         # Ejecuta el algoritmo genético
@@ -24,13 +24,15 @@ class GeneticSolver:
             for solution in population:
                 fitness=fitness_evaluator.evaluate(solution)
                 if fitness == 243:
-                    print("Solución encontrada en la iteración", i + 1)
+                    print("Solución encontrada en la generacion", i + 1)
                     print()
                     return solution
            
             probabilities = self.calculateProbabilities(population, fitness_evaluator)
 
-            population = population_generator.new(population, probabilities, sudoku, self.mutation_rate)
+            mutation_rate = self.mutation_rate * (1 - i / self.max_generations)
+            
+            population = population_generator.new(population, probabilities, sudoku, mutation_rate, self.crossover_rate)
   
         # Retorna la mejor solución
         return max(population, key=fitness_evaluator.evaluate)
@@ -39,6 +41,7 @@ class GeneticSolver:
         fitnesses = [fitness_function.evaluate(solution) for solution in population]
         total_fitness = sum(fitnesses)
         return [fitness / total_fitness for fitness in fitnesses]
+
 
 
     #     # # Ejecuta el algoritmo genético

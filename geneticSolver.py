@@ -69,7 +69,7 @@ class GeneticSolver:
             total_fitness = sum(fitnesses)
             probabilities = [fitness / total_fitness for fitness in fitnesses]
 
-            # Increase the probability of selecting solutions with higher fitness
+            # Aumenta la probabilidad de seleccionar soluciones con una mayor aptitud
             parents = random.choices(population, probabilities, k=2)
             return random.choice(parents), random.choice(parents)
 

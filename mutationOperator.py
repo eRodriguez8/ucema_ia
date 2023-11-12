@@ -6,7 +6,7 @@ class MutationOperator:
         row = random.randint(0, 8)
         col = random.randint(0, 8)
 
-        # Find available values not in the row, column, or block
+        # Encuentra los valores disponibles que no están en la fila, columna o bloque.
         available_values = list(set(range(1, 10)) - set(solution[row]) - set(solution[i][col] for i in range(9)) - set(solution[r][c] for r in range(row - row % 3, row - row % 3 + 3) for c in range(col - col % 3, col - col % 3 + 3)))
 
         if available_values:

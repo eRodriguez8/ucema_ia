@@ -3,7 +3,7 @@ from geneticSolver import GeneticSolver
 from sudokus import Sudokus
 
 sudokus = Sudokus()
-solver = GeneticSolver()
+solver = GeneticSolver(100, 0.3, 0.8, 5000)
 printer = SudokuPrinter()
 
 reallyEasy = sudokus.reallyEasy()

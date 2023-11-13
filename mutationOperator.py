@@ -9,5 +9,6 @@ class MutationOperator:
             if available_values:
                 value = random.choice(available_values)
                 solution[row][col] = value
+                break
 
         return solution

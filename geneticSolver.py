@@ -30,7 +30,7 @@ class GeneticSolver:
                     print()
                     return solution
            
-            probabilities = self.CalculateProbabilities(population, fitness_evaluator)
+            probabilities = self.calculate_probabilities(population, fitness_evaluator)
             
             population = population_generator.new(population, probabilities, sudoku, self.mutation_rate)
   
@@ -40,7 +40,7 @@ class GeneticSolver:
         print()
         return max(population, key=fitness_evaluator.evaluate)
 
-    def CalculateProbabilities(self, population, fitness_function):
+    def calculate_probabilities(self, population, fitness_function):
         fitnesses = [fitness_function.evaluate(solution) for solution in population]
         total_fitness = sum(fitnesses)
         return [fitness / total_fitness for fitness in fitnesses]

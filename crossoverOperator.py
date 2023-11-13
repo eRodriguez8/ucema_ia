@@ -2,7 +2,6 @@ import copy
 import random
 
 class CrossoverOperator:
-
     @staticmethod
     def crossover(solution1, solution2):
         row = random.randint(0, 8)

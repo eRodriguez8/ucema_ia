@@ -10,7 +10,7 @@ class PopulationGenerator:
 
     def random(self, sudoku):
         population = [sudoku]
-        for i in range(self.population_size - 1):
+        for _ in range(self.population_size - 1):
             solution = [[sudoku[row][col] for col in range(9)] for row in range(9)]
             for row in range(9):
                 for col in range(9):

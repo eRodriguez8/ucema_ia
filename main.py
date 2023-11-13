@@ -3,8 +3,12 @@ from sudokuSolver import SudokuSolver
 from sudokuPrinter import SudokuPrinter
 from geneticSolver import GeneticSolver
 
+population = 50
+mutationRate = 0.2
+generations = 500
+
 sudokus = Sudokus()
-solver = GeneticSolver()
+solver = GeneticSolver(population, mutationRate, generations)
 printer = SudokuPrinter()
 sudokuSolver = SudokuSolver()
 print()
@@ -13,13 +17,6 @@ easy = sudokus.easy()
 medium = sudokus.medium()
 hard = sudokus.hard()
 
-print("Original")
-printer.print(easy)
-print()
-
+printer.print_original(easy)
 result = solver.solve(easy)
-# result = sudokuSolver.solve_sudoku(easy)
-
-print("Resolved")
-printer.print(result)
-print()
+printer.print_resolved(result)
